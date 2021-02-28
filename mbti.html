@@ -352,11 +352,35 @@
 			transform: translateY(0);
 			transition-delay: .2s;
 		}
+
+		span{
+			position: absolute;
+			background-image: url(./img/heart.png);
+			pointer-events: none;
+			transform: translate(-50%, -50%);
+			width: 100px;
+			height: 100px;
+			background-size: cover;
+			animation: animatte 2s linear infinite;
+		}
+		@keyframes animate {
+			0%
+			{
+				transform: translate(-50%, -50%);
+				opacity: 1;
+				filter: hue-rotate(0deg);
+			}
+			100%
+			{
+				transform: translate(-50%, -1000%);
+				opacity: 0;
+				filter: hue-rotate(720deg);
+			}
+		}
 	</style>
 </head>
 
 <body>
-
 	<div class="section">
 		<input type="radio" name="slide" id="slide01" checked>
 		<input type="radio" name="slide" id="slide02">
@@ -473,6 +497,24 @@
 						<div class="heart fun-btn"
 							OnClick='location.href="https://www.notion.so/d9a5ca2ac92749febae6225d8a480705"'>
 							<div class="result">결과보기</div>
+							<script type="text/javascript">
+								document.addEventListener("mousemove", function(e){
+									var body = document.querySelector('body');
+									var heart = document.createElement("span");
+									var x = e.offsetX;
+									var y = e.offsetY;
+									heart.style.left = x+'px';
+									heart.style.top = y+'px';
+									var size = Math.random() * 100;
+									heart.style.width = 10+size+'px';
+									heart.style.height = 10+size+'px';
+									body.appendChild(heart);
+
+									setTimeout(function(){
+										heart.remove();
+									},1000);
+								})
+							</script>
 						</div>
 					</a>
 				</li>
