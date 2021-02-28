@@ -7,7 +7,7 @@
 		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title>42Seoul_MBTI</title>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
- 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 	<style>
 		* {
@@ -122,6 +122,7 @@
 				transform: scale(0.6) rotate(-45deg);
 			}
 		}
+
 		.result {
 			font-size: 11.8vw;
 			color: white;
@@ -353,7 +354,7 @@
 			transition-delay: .2s;
 		}
 
-		span{
+		span {
 			position: absolute;
 			background-image: url(./img/heart.png);
 			pointer-events: none;
@@ -363,24 +364,89 @@
 			background-size: cover;
 			animation: animatte 2s linear infinite;
 		}
+
 		@keyframes animate {
-			0%
-			{
+			0% {
 				transform: translate(-50%, -50%);
 				opacity: 1;
 				filter: hue-rotate(0deg);
 			}
-			100%
-			{
+
+			100% {
 				transform: translate(-50%, -1000%);
 				opacity: 0;
 				filter: hue-rotate(720deg);
 			}
 		}
+
+		.pointer {
+			font-size: 3vw;
+			color: #fff;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40px;
+			height: 40px;
+			transition: 0.2s;
+		}
+
+		.pointer1 {
+			transition: 0.05s;
+		}
+
+		.pointer2 {
+			transition: 0.1s;
+		}
+
+		.pointer3 {
+			transition: 0.15s;
+		}
+
+		.pointer4 {
+			transition: 0.2s;
+		}
+
+		.pointer5 {
+			transition: 0.25s;
+		}
 	</style>
 </head>
 
 <body>
+	<div class="trail">
+		<div class="pointer pointer1">I</div>
+		<div class="pointer pointer2">N</div>
+		<div class="pointer pointer3">I</div>
+		<div class="pointer pointer4">T</div>
+		<div class="pointer pointer5">6</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).mousemove(function (e) {
+			$('.pointer').css({ left: e.pageX, top: e.pageY });
+		})
+		setTimeout(function () {
+			document.addEventListener("mousemove", function (e) {
+				var body = document.querySelector('body');
+				var heart = document.createElement("span");
+				var x = e.offsetX;
+				var y = e.offsetY;
+				heart.style.left = x + 'px';
+				heart.style.top = y + 'px';
+				var size = Math.random() * 100;
+				heart.style.width = 10 + size + 'px';
+				heart.style.height = 10 + size + 'px';
+				body.appendChild(heart);
+
+				setTimeout(function () {
+					heart.remove();
+				}, 1000);
+			})
+		}, 20000);
+
+	</script>
 	<div class="section">
 		<input type="radio" name="slide" id="slide01" checked>
 		<input type="radio" name="slide" id="slide02">
@@ -392,7 +458,6 @@
 			<ul class="slidelist">
 				<li>
 					<a>
-						<label for="slide06" class="left"></label>
 						<div class="textbox">
 							<h2>나는 누군가와 함께 하면<br>공부가 더 잘 된다</h2>
 							<p><br></p>
@@ -488,7 +553,7 @@
 								<label for="5-4">전혀 아니다</label>
 							</div>
 						</div>
-						<label for="slide06" class="right"></label>
+						<label for="slide06" class="right" onclick="javascript:;"></label>
 					</a>
 				</li>
 				<li>
@@ -497,24 +562,7 @@
 						<div class="heart fun-btn"
 							OnClick='location.href="https://www.notion.so/d9a5ca2ac92749febae6225d8a480705"'>
 							<div class="result">결과보기</div>
-							<script type="text/javascript">
-								document.addEventListener("mousemove", function(e){
-									var body = document.querySelector('body');
-									var heart = document.createElement("span");
-									var x = e.offsetX;
-									var y = e.offsetY;
-									heart.style.left = x+'px';
-									heart.style.top = y+'px';
-									var size = Math.random() * 100;
-									heart.style.width = 10+size+'px';
-									heart.style.height = 10+size+'px';
-									body.appendChild(heart);
 
-									setTimeout(function(){
-										heart.remove();
-									},1000);
-								})
-							</script>
 						</div>
 					</a>
 				</li>
